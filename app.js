@@ -10,8 +10,18 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 const cryptoToken = process.env.CRYPTO_TOKEN;
 
 bot.start(ctx => {
+    const username = ctx.chat.username;
+    if(!username){
+        const firstname = ctx.chat.first_name;
+        const lastname = ctx.chat.last_name;
+        return ctx.reply(`
+            سلام ${firstname} ${lastname} عزیز 
+            برای دیدن رمز ارزها از دستور /crypto استفاده کنید
+            `)
+    }
     ctx.reply(`
-        /crypto - برای دیدن رمز ارزها
+    سلام ${username} عزیز 
+    برای دیدن رمز ارزها از دستور /crypto استفاده کنید
     `)
 });
 
@@ -24,7 +34,6 @@ bot.command('crypto',ctx => {
             inline_keyboard: [
                 [
                     {text: "قیمت رمز ارزها" , callback_data: "pricing"},
-                    
                 ],
                 [
                     {text: "CoinList(cryptoCompare)" , url:"https://www.cryptocompare.com"},
