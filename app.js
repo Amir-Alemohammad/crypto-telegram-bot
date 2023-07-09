@@ -22,10 +22,8 @@ bot.start(ctx => {
     ctx.reply(`
     سلام ${username} عزیز 
     برای دیدن رمز ارزها از دستور /crypto استفاده کنید
-    `)
+    `);
 });
-
-
 
 
 bot.command('crypto',ctx => {
